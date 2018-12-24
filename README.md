@@ -1,1 +1,0 @@
-# agroamigos-api
