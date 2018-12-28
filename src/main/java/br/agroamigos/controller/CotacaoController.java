@@ -35,7 +35,7 @@ public class CotacaoController {
         return indicadorRepository.findById(indicadorId).map(indicador -> {
             cotacao.setIndicador(indicador);
             return cotacaoRepository.save(cotacao);
-        }).orElseThrow(()-> new ResourceNotFoundException("Código do Indicador "+ indicadorId + "Não encontrado" ));
+        }).orElseThrow(()-> new ResourceNotFoundException("Indicador", "não encontrado", indicadorId));
     }
 
 

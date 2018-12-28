@@ -32,7 +32,7 @@ public class IndicadorController {
         return indicadorRepository.findById(indicadorId).map(indicador -> {
             indicador.setIndicador(postRequest.getIndicador());
             return indicadorRepository.save(indicador);
-        }).orElseThrow(() -> new ResourceNotFoundException("Código do Indicador "+ indicadorId + "Não encontrado" ));
+        }).orElseThrow(() -> new ResourceNotFoundException("Indicador", "não encontrado", indicadorId));
     }
 
     @DeleteMapping("/indicadores/{indicadorId}")
@@ -40,7 +40,7 @@ public class IndicadorController {
         return indicadorRepository.findById(indicadorId).map(indicador -> {
             indicadorRepository.delete(indicador);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("Código do Indicador "+ indicadorId + "Não encontrado" ));
+        }).orElseThrow(() -> new ResourceNotFoundException("Indicador", "não encontrado", indicadorId));
     }
 
 
