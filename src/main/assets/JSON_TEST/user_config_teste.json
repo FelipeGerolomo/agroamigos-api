@@ -1,0 +1,14 @@
+[
+  {
+    "idUser": {"id": 1},
+    "codIndicador": {"codIndicador": 1}
+  },
+  {
+    "idUser": {"id": 1},
+    "codIndicador": {"codIndicador": 2}
+  },
+  {
+    "idUser": {"id": 1},
+    "codIndicador": {"codIndicador": 3}
+  }
+]
