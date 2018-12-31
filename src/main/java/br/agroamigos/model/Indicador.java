@@ -2,6 +2,7 @@ package br.agroamigos.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,7 +19,7 @@ public class Indicador extends AuditModel {
     private String indicador;
 
     @OneToMany(mappedBy = "codIndicador")
-    private List<UserConfig> userConfigList;
+    private List<UserConfig> userConfigList = new ArrayList<>();
 
     public Integer getCodIndicador() {
         return codIndicador;

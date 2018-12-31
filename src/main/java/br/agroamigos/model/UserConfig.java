@@ -3,6 +3,7 @@ package br.agroamigos.model;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity

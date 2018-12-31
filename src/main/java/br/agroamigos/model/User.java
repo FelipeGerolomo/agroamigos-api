@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,7 +53,7 @@ public class User extends AuditModel{
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "id")
-    private List<UserConfig> userConfigList;
+    private List<UserConfig> userConfigList = new ArrayList<>();
 
     public User() {
 

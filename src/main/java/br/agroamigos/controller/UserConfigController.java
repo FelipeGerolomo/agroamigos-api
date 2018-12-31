@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserConfigController {
@@ -16,7 +18,7 @@ public class UserConfigController {
     private UserConfigRepository userConfigRepository;
 
     @PostMapping("/config")
-    public UserConfig postConfig(@RequestBody UserConfig userConfig) {
-            return userConfigRepository.save(userConfig);
+    public List<UserConfig> postConfig(@RequestBody List<UserConfig> userConfig) {
+        return userConfigRepository.saveAll(userConfig);
     }
 }
