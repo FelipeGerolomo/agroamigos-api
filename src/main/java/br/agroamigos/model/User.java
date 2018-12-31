@@ -1,6 +1,9 @@
 package br.agroamigos.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +19,7 @@ import java.util.Set;
                 "DS_EMAIL"
         })
 })
+//@JsonIgnoreProperties(value = {"roles"})
 public class User extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,14 +50,15 @@ public class User extends AuditModel{
     @Column(name = "DS_TELEFONE")
     private String telefone;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "id")
-    private List<UserConfig> userConfigList = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<UserConfig> userConfigList = new HashSet<>();
 
     public User() {
 
@@ -132,11 +137,11 @@ public class User extends AuditModel{
         this.roles = roles;
     }
 
-    public List<UserConfig> getUserConfigList() {
+    public Set<UserConfig> getUserConfigList() {
         return userConfigList;
     }
 
-    public void setUserConfigList(List<UserConfig> userConfigList) {
+    public void setUserConfigList(Set<UserConfig> userConfigList) {
         this.userConfigList = userConfigList;
     }
 }

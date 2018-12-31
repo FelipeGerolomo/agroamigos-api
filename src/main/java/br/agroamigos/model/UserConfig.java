@@ -1,5 +1,6 @@
 package br.agroamigos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
@@ -12,13 +13,17 @@ public class UserConfig {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CONFIG")
+    @JsonIgnore
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idUser")
     private User idUser;
-
+    
     @ManyToOne(optional = false)
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "codIndicador")
     private Indicador codIndicador;
 
