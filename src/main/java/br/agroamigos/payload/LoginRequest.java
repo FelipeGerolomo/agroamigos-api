@@ -1,10 +1,13 @@
 package br.agroamigos.payload;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.NotBlank;
 
 
 public class LoginRequest {
     @NotBlank
+    @JsonProperty("email")
     private String usernameOrEmail;
 
     @NotBlank
