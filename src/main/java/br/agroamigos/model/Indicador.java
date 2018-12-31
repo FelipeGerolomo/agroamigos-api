@@ -2,6 +2,7 @@ package br.agroamigos.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 
 @Entity
@@ -15,6 +16,9 @@ public class Indicador extends AuditModel {
     @NotEmpty
     @Column(name = "INDICADOR")
     private String indicador;
+
+    @OneToMany(mappedBy = "codIndicador")
+    private List<UserConfig> userConfigList;
 
     public Integer getCodIndicador() {
         return codIndicador;
@@ -32,8 +36,11 @@ public class Indicador extends AuditModel {
         this.indicador = indicador;
     }
 
+    public List<UserConfig> getUserConfigList() {
+        return userConfigList;
+    }
 
-
-
-
+    public void setUserConfigList(List<UserConfig> userConfigList) {
+        this.userConfigList = userConfigList;
+    }
 }

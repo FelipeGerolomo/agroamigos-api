@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,6 +50,9 @@ public class User extends AuditModel{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "id")
+    private List<UserConfig> userConfigList;
 
     public User() {
 
@@ -125,5 +129,13 @@ public class User extends AuditModel{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<UserConfig> getUserConfigList() {
+        return userConfigList;
+    }
+
+    public void setUserConfigList(List<UserConfig> userConfigList) {
+        this.userConfigList = userConfigList;
     }
 }
