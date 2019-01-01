@@ -11,27 +11,35 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "INDICADORES")
+@Table(name = "INDICADORES", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+                "DS_INDICADOR"
+        })
+})
 @JsonIgnoreProperties(value = {"userConfigList"})
 public class Indicador extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "COD_INDICADOR")
-    private Integer codIndicador;
+    @Column(name = "ID_INDICADOR")
+    private Long idIndicador;
 
     @NotEmpty
-    @Column(name = "INDICADOR")
+    @Column(name = "DS_INDICADOR", unique = true)
     private String indicador;
+
+    @NotEmpty
+    @Column(name = "DS_UNIDADE")
+    private String unidade;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "codIndicador", cascade = CascadeType.ALL)
     private Set<UserConfig> userConfigList = new HashSet<>();
 
-    public Integer getCodIndicador() {
-        return codIndicador;
+    public Long getIdIndicador() {
+        return idIndicador;
     }
 
-    public void setCodIndicador(Integer codIndicador) {
-        this.codIndicador = codIndicador;
+    public void setIdIndicador(Long idIndicador) {
+        this.idIndicador = idIndicador;
     }
 
     public String getIndicador() {
@@ -40,6 +48,14 @@ public class Indicador extends AuditModel {
 
     public void setIndicador(String indicador) {
         this.indicador = indicador;
+    }
+
+    public String getUnidade() {
+        return unidade;
+    }
+
+    public void setUnidade(String unidade) {
+        this.unidade = unidade;
     }
 
     public Set<UserConfig> getUserConfigList() {

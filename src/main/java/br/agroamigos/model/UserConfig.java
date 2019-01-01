@@ -21,7 +21,7 @@ public class UserConfig {
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser")
     private User idUser;
-    
+
     @ManyToOne(optional = false)
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "codIndicador")

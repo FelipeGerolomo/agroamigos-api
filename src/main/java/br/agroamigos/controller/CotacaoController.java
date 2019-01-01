@@ -29,14 +29,14 @@ public class CotacaoController {
         return cotacaoRepository.findByIndicador(indicadorId, pageable);
     }
 
-    @PostMapping("/indicadores/{indicadorId}/cotacoes")
-    public Cotacao postCotacao(@PathVariable (value = "indicadorId") Integer indicadorId,
-                               @Valid @RequestBody Cotacao cotacao) {
-        return indicadorRepository.findById(indicadorId).map(indicador -> {
-            cotacao.setIndicador(indicador);
-            return cotacaoRepository.save(cotacao);
-        }).orElseThrow(()-> new ResourceNotFoundException("Indicador", "não encontrado", indicadorId));
-    }
+//    @PostMapping("/indicadores/{indicadorId}/cotacoes")
+//    public Cotacao postCotacao(@PathVariable (value = "indicadorId") Integer indicadorId,
+//                               @Valid @RequestBody Cotacao cotacao) {
+//        return indicadorRepository.findById(indicadorId).map(indicador -> {
+//            cotacao.setIndicador(indicador);
+//            return cotacaoRepository.save(cotacao);
+//        }).orElseThrow(()-> new ResourceNotFoundException("Indicador", "não encontrado", indicadorId));
+//    }
 
 
 }
