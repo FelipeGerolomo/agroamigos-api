@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CotacaoRepository extends JpaRepository<Cotacao, Integer> {
-    Page<Cotacao> findByIndicador(Integer indicadorId, Pageable pageable);
+public interface CotacaoRepository extends JpaRepository<Cotacao, Long> {
+    //Page<Cotacao> findByIndicador(Integer indicadorId, Pageable pageable);
 }

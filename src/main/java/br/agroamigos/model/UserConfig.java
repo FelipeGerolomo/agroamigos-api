@@ -24,8 +24,8 @@ public class UserConfig {
 
     @ManyToOne(optional = false)
     @ElementCollection(fetch = FetchType.EAGER)
-    @JoinColumn(name = "codIndicador")
-    private Indicador codIndicador;
+    @JoinColumn(name = "idIndicador")
+    private Indicador idIndicador;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class UserConfig {
         this.idUser = idUser;
     }
 
-    public Indicador getCodIndicador() {
-        return codIndicador;
+    public Indicador getIdIndicador() {
+        return idIndicador;
     }
 
-    public void setCodIndicador(Indicador codIndicador) {
-        this.codIndicador = codIndicador;
+    public void setIdIndicador(Indicador idIndicador) {
+        this.idIndicador = idIndicador;
     }
 }

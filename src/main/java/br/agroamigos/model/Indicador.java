@@ -31,7 +31,10 @@ public class Indicador extends AuditModel {
     @Column(name = "DS_UNIDADE")
     private String unidade;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "codIndicador", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idIndicador", cascade = CascadeType.ALL)
+    private Set<Cotacao> cotacaoList = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idIndicador", cascade = CascadeType.ALL)
     private Set<UserConfig> userConfigList = new HashSet<>();
 
     public Long getIdIndicador() {
@@ -64,5 +67,13 @@ public class Indicador extends AuditModel {
 
     public void setUserConfigList(Set<UserConfig> userConfigList) {
         this.userConfigList = userConfigList;
+    }
+
+    public Set<Cotacao> getCotacaoList() {
+        return cotacaoList;
+    }
+
+    public void setCotacaoList(Set<Cotacao> cotacaoList) {
+        this.cotacaoList = cotacaoList;
     }
 }

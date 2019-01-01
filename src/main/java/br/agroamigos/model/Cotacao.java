@@ -1,5 +1,6 @@
 package br.agroamigos.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -13,12 +14,12 @@ public class Cotacao extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_COTACAO")
-    private Integer id;
+    private Long idCotacao;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "indicador", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Indicador indicador;
+    @JsonIgnore
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idIndicador")
+    private Indicador idIndicador;
 
     @Column(name = "VL_PRECO")
     private Float vl_preco;
@@ -27,20 +28,20 @@ public class Cotacao extends AuditModel {
     @Column(name = "SG_MOEDA")
     private String sg_moeda;
 
-    public Integer getId() {
-        return id;
+    public Long getIdCotacao() {
+        return idCotacao;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCotacao(Long idCotacao) {
+        this.idCotacao = idCotacao;
     }
 
-    public Indicador getIndicador() {
-        return indicador;
+    public Indicador getIdIndicador() {
+        return idIndicador;
     }
 
-    public void setIndicador(Indicador indicador) {
-        this.indicador = indicador;
+    public void setIdIndicador(Indicador idIndicador) {
+        this.idIndicador = idIndicador;
     }
 
     public Float getVl_preco() {
@@ -58,6 +59,4 @@ public class Cotacao extends AuditModel {
     public void setSg_moeda(String sg_moeda) {
         this.sg_moeda = sg_moeda;
     }
-
-
 }
