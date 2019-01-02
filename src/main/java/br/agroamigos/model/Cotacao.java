@@ -1,6 +1,8 @@
 package br.agroamigos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,10 +18,9 @@ public class Cotacao extends AuditModel {
     @Column(name = "ID_COTACAO")
     private Long idCotacao;
 
-    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "idIndicador")
-    private Indicador idIndicador;
+    @JoinColumn(name = "id_indicador")
+    private Indicador indicador;
 
     @Column(name = "VL_PRECO")
     private Float vl_preco;
@@ -37,11 +38,11 @@ public class Cotacao extends AuditModel {
     }
 
     public Indicador getIdIndicador() {
-        return idIndicador;
+        return indicador;
     }
 
     public void setIdIndicador(Indicador idIndicador) {
-        this.idIndicador = idIndicador;
+        this.indicador = idIndicador;
     }
 
     public Float getVl_preco() {

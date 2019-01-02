@@ -16,7 +16,7 @@ public class UserConfig {
     @JsonIgnore
     private Long id;
 
-    @JsonIgnore
+
     @ManyToOne(optional = false)
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "idUser")

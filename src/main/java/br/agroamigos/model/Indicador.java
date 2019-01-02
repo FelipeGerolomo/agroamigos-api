@@ -1,6 +1,8 @@
 package br.agroamigos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -31,11 +33,9 @@ public class Indicador extends AuditModel {
     @Column(name = "DS_UNIDADE")
     private String unidade;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idIndicador", cascade = CascadeType.ALL)
-    private Set<Cotacao> cotacaoList = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "idIndicador", cascade = CascadeType.ALL)
-    private Set<UserConfig> userConfigList = new HashSet<>();
+    private Set<UserConfig> userConfigList;
 
     public Long getIdIndicador() {
         return idIndicador;
@@ -69,11 +69,6 @@ public class Indicador extends AuditModel {
         this.userConfigList = userConfigList;
     }
 
-    public Set<Cotacao> getCotacaoList() {
-        return cotacaoList;
-    }
 
-    public void setCotacaoList(Set<Cotacao> cotacaoList) {
-        this.cotacaoList = cotacaoList;
-    }
+
 }
